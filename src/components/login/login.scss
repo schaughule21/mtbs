@@ -1,0 +1,76 @@
+.login-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #202020;
+	color: #FFDF6C;
+}
+
+.box {
+    background-color: #3F3F3F;
+    display: flex;
+    align-items: center;
+    height: 350px;
+    width: 350px;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 1em;
+}
+
+form {
+    width: 75%;
+	background-color: transparent;
+}
+
+input {
+    border: none;
+    border-bottom: solid;
+    width: 100%;
+	background-color: transparent;
+	height: 25px;
+	font-size: 15px;
+}
+
+.floating-label-group {
+	position: relative;
+	margin-top: 2.2em;
+	margin-bottom: 25px;
+	background-color: transparent;
+
+	.floating-label {
+		background-color: transparent;
+		font-size: 18px;
+		color: #FFDF6C;
+		position: absolute;
+		pointer-events: none;
+		top: -5px;
+		left: 10px;
+		transition: all 0.1s ease;
+	}
+
+	input:focus ~ .floating-label,
+	input:not(:focus):valid ~ .floating-label {
+		top: -15px;
+		bottom: 0px;
+		left: 0px;
+		font-size: 12px;
+		opacity: 1;
+		color: #FFDF6C;
+	}
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+button {
+	background-color: #FFDF6C;
+	float: right;
+	padding: 0;
+	padding: 15px;
+	margin: 2em;
+	border: round;
+	border-radius: 10px;
+	font-weight: bold;
+}

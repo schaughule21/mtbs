@@ -1,0 +1,49 @@
+.navbar-main {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.logo {
+    display: flex;
+    margin: 0;
+    margin-left: 2em;
+    align-items: center;
+    color: #FFDF6C;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-left: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  li {
+    float: right;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  li a:hover:not(.active) {
+    color: #FFDF6C;
+  }
+  
+  .active {
+    color: #FFDF6C;
+  }
+
+  button{
+    border: round;
+    border-radius: 10px;
+  }

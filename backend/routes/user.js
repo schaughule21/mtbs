@@ -1,4 +1,8 @@
 const router = require("express").Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 let User = require("../models/user.model");
 
 //609ab64dcc828e0890444f5e
@@ -22,12 +26,49 @@ router.route("/add").post((req, res) => {
   const contact = req.body.contact;
   const type = req.body.type;
 
-  const newUser = new User({ userName, email, password, contact, type });
+  if (!userName || !email || !password || !contact || !type) {
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
+  User.findOne({ email }).then((user) => {
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
+    }
 
-  newUser
-    .save()
-    .then(() => res.send("User Added!"))
-    .catch((err) => res.status(400).send("Error" + err));
+    const newUser = new User({ userName, email, password, contact, type });
+
+    //Hashing pass
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+
+        newUser.password = hash;
+
+        newUser
+          .save()
+          .then((user) => {
+            jwt.sign(
+              { id: user.id },
+              process.env.jwtSecret,
+              { expiresIn: 3600 },
+              (err, token) => {
+                if (err) throw err;
+                res.json({
+                  token,
+                  user: {
+                    id: user.id,
+                    name: user.userName,
+                    email: user.email,
+                    contact: user.contact,
+                    type: user.type,
+                  },
+                });
+              }
+            );
+          })
+          .catch((err) => res.status(400).send("Error" + err));
+      });
+    });
+  });
 });
 
 router.route("/update/:id").put((req, res) => {
