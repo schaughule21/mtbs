@@ -22,18 +22,19 @@ export function getUserToken(req) {
 }
 
 export function getUser() {
-  var status = JSON.parse(localStorage.getItem("loginStatus"));
-  console.log(status.token);
-  return api
-    .get("/auth/user", {
-      headers: {
-        Authorization: `x-auth-token=${status.token}`,
-      },
-    })
-    .then((res) => {
-      console.log("Result Obtained");
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  return new Promise((resolve, reject) => {
+    var status = JSON.parse(localStorage.getItem("loginStatus"));
+    api
+      .get("/auth/user", {
+        headers: {
+          "x-auth-token": status.token,
+        },
+      })
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 }
