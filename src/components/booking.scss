@@ -1,0 +1,19 @@
+.booking-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 50px);
+    background-color: #202020;
+	color: #FFDF6C;
+}
+
+.booking-box {
+    background-color: #3F3F3F;
+    display: flex;
+    align-items: center;
+    height: 80vh;
+    width: 80%;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 1em;
+}
