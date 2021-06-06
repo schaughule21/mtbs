@@ -14,6 +14,8 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", updateMedia);
   });
 
+  const [signedIn, setSignedIn] = useState(false);
+
   const [openNav, setOpenNav] = useState(false);
 
   return (
@@ -38,7 +40,7 @@ const Navbar = () => {
                 <a href="#view-history">View History</a>
               </li>
               <li>
-                <a href="#edit-profile">Edit Profile</a>
+                <a href="/my-profile">Edit Profile</a>
               </li>
             </ul>
           </div>
@@ -68,7 +70,7 @@ const Navbar = () => {
                 Home
               </a>
               <a href="#view-history">View History</a>
-              <a href="#edit-profile">Edit Profile</a>
+              <Link to={"/my-profile"}>View Profile</Link>
             </div>
             <Link
               to={"/"}

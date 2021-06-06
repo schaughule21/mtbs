@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./home.scss";
-import { getUser } from "./login/loginCrud";
 import { getMovies } from "./moviesCrud";
 
 const Home = () => {
@@ -14,20 +13,14 @@ const Home = () => {
     setMovies(movieData);
   };
 
-  const fetchUserData = async () => {
-    let userData = await getUser();
-    console.log(`userData : `, userData);
-  };
-
   useEffect(() => {
     fetchMovieData();
-    fetchUserData();
   }, []);
 
   const bookTicket = (id) => {
     var status = JSON.parse(localStorage.getItem("loginStatus"));
     if (status.signedIn) {
-      history.push(`/${id}`);
+      history.push(`/book-ticket/${id}`);
     }
   };
 

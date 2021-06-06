@@ -7,6 +7,12 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).send("Error:" + err));
 });
 
+router.route("/:id").get((req, res) => {
+  History.findById(req.params.id)
+    .then((history) => res.json(history))
+    .catch((err) => res.status(400).send("Error:" + err));
+});
+
 router.route("/add").post((req, res) => {
   const userId = req.body.userId;
   const movieName = req.body.movieName;

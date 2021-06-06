@@ -4,22 +4,21 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Login from "./components/login/UserLogin";
 import BookTickets from "./components/BookTickets";
+import Profile from "./components/Menu/Profile";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Switch>
+      <div className="App">
         <Route path="/" exact={true} component={Login} />
-        <div>
-          <Navbar />
+        <Navbar />
+        <Switch>
           <Route path="/Home" exact={true} component={Home} />
-          <Route path="/:id" component={BookTickets} />
-          {/*<Route path="/users">
-      <Users />
-    </Route> */}
-        </div>
-      </Switch>
+          <Route path="/book-ticket/:id" component={BookTickets} />
+          <Route path="/my-profile" exact={true} component={Profile} />
+        </Switch>
+      </div>
     </Router>
   );
 }
