@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/login/UserLogin";
+import Signup from "./components/login/Signup";
 import BookTickets from "./components/BookTickets";
 import Profile from "./components/Menu/Profile";
 import ValidateUser from "./components/validateUser";
@@ -11,6 +12,7 @@ function App() {
   return (
     <Router>
       <Route path="/" exact={true} component={Login} />
+      <Route path="/sign-up" exact={true} component={Signup} />
       <Switch>
         <Route
           path="/Home"

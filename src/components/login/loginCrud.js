@@ -4,6 +4,23 @@ const api = axios.create({
   baseURL: `http://localhost:5000/`,
 });
 
+export function addUser(req) {
+  return api
+    .post("/users/add", req)
+    .then((res) => {
+      localStorage.setItem(
+        "loginStatus",
+        JSON.stringify({
+          token: res.data.token,
+          signedIn: true,
+        })
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export function getUserToken(req) {
   return api
     .post("/auth", req)

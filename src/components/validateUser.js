@@ -1,43 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 
 const ValidateUser = (props) => {
+  const history = useHistory();
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-    const history = useHistory();
-    const [isLoggedIn, setLoggedIn] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+  const checkLoggedInUser = async () => {
+    let loginData = localStorage.getItem("loginStatus");
+    if (loginData && JSON.parse(loginData)) {
+      let { signedIn } = JSON.parse(loginData);
+      if (signedIn) {
+        setLoggedIn(true);
+        setIsLoading(false);
+      } else {
+        history.push("/");
+      }
+    } else {
+      history.push("/");
+    }
+  };
 
-    const checkLoggedInUser = async () => {
-        let loginData = localStorage.getItem('loginStatus');
-        if(loginData && JSON.parse(loginData)) {
-            let { signedIn } = JSON.parse(loginData); 
-            if(signedIn) {
-                setLoggedIn(true);
-                setIsLoading(false);
-            } else {
-                history.push('/');
-            }
-        } else {
-            history.push('/');
-        }
-    };
+  useEffect(() => {
+    checkLoggedInUser();
+  }, []);
 
-    useEffect(() => {
-        checkLoggedInUser();
-    }, []);
-
-    return (
+  return (
+    <>
+      {isLoading || !isLoggedIn ? null : (
         <>
-            {isLoading || !isLoggedIn ?
-                null:
-                <>
-                    <Navbar />
-                    {props.children}
-                </>
-            }   
+          <Navbar />
+          {props.children}
         </>
-    );
+      )}
+    </>
+  );
 };
 
 export default ValidateUser;

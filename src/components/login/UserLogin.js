@@ -88,7 +88,7 @@ const UserLogin = () => {
               <span style={{ marginRight: "10px" }}>
                 Don't have an account?
               </span>
-              <a href="#">Sign Up</a>
+              <a href="/sign-up">Sign Up</a>
             </div>
           </div>
         </div>
