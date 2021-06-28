@@ -1,23 +1,226 @@
 .booking-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 50px);
-    background-color: #202020;
-	color: #FFDF6C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 50px);
+  background-color: #202020;
+  color: #FFDF6C;
 }
 
 .booking-box {
-    background-color: #3F3F3F;
-    display: flex;
-    align-items: center;
-    height: 80vh;
-    width: 80%;
-    flex-direction: column;
-    border-radius: 20px;
-    padding: 1em;
+  background-color: #3F3F3F;
+  display: flex;
+  align-items: center;
+  height: 80vh;
+  width: 80%;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 1em;
+  flex-wrap: wrap;
 }
 
-.seat-data-container{
-    width: 50%;
+.ticket-det-main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.seat-numbers {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.seat-numbers-text {
+  font-size: small;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+input[type=checkbox] {
+  position: relative;
+  height: 18px;
+  width: 10px;
+  background-color: #ccc;
+  border-radius: 15px 15px 5px 5px;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  border-bottom: 0;
+}
+
+input[type=checkbox]:hover {
+  background-color: #eee;
+}
+
+input[type=checkbox]:checked {
+  background-color: rgb(98, 197, 98);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+input:checked~.checkmark:after {
+  display: block;
+}
+
+.checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.span-props {
+  background-color: transparent;
+  font-weight: bold;
+  width: 5%;
+  display: inline-block;
+}
+
+.checkbox-align {
+  background-color: transparent;
+  width: 100%;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.screen {
+  display: flex;
+  margin-top: 6em;
+  margin-bottom: 2em;
+  justify-content: center;
+  position: relative;
+  left: 7.5%;
+  width: 90%;
+  height: 25px;
+}
+
+.ticket-details {
+  background-color: transparent;
+  padding-top: 0px;
+  padding-left: 2em;
+}
+
+.ticket-det-styling {
+  background-color: transparent;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 350px) {
+  input[type=checkbox] {
+    position: relative;
+    height: 12px;
+    width: 8px;
+    background-color: #ccc;
+    border-radius: 15px 15px 5px 5px;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 0;
+  }
+
+  .checkbox-margin {
+    margin-left: 8.7px;
+    display: flex
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .checkbox-margin {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  input[type=checkbox] {
+    position: relative;
+    height: 15px;
+    width: 10px;
+    background-color: #ccc;
+    border-radius: 15px 15px 5px 5px;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 0;
+  }
+
+  .span-props {
+    background-color: transparent;
+    font-weight: bold;
+    width: 5%;
+    font-size: large;
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  input[type=checkbox] {
+    position: relative;
+    height: 15px;
+    width: 15px;
+    background-color: #ccc;
+    border-radius: 15px 15px 5px 5px;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 0;
+  }
+
+  .span-props {
+    background-color: transparent;
+    font-weight: bold;
+    width: 5%;
+    font-size: large;
+    display: inline-block;
+  }
+
+  .seat-numbers-text {
+    font-size: large;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  input[type=checkbox] {
+    position: relative;
+    height: 30px;
+    width: 25px;
+    background-color: #ccc;
+    border-radius: 15px 15px 5px 5px;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 0;
+  }
+
+  .span-props {
+    background-color: transparent;
+    font-weight: bold;
+    width: 5%;
+    font-size: xx-large;
+    display: inline-block;
+  }
+
+  .seat-numbers-text {
+    font-size: x-large;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+  }
 }
