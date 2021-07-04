@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDataById } from "./moviesCrud";
+import { getUser } from "./login/loginCrud";
 import "./booking.scss";
 
 const BookTickets = () => {
   let { id } = useParams();
 
   const [movieData, setMovieData] = useState();
+  const [userData, setUserData] = useState();
   const [movieDate, setMovieDate] = useState();
 
   const fetchMovieData = async () => {
     const movData = await getMovieDataById(id);
     setMovieData(movData);
     convertDate(movData.movieDateAndTime);
+  };
+
+  const fetchUserData = async () => {
+    const temp = await getUser();
+    setUserData(temp);
   };
 
   const convertDate = (utcDate) => {
@@ -22,6 +29,7 @@ const BookTickets = () => {
 
   useEffect(() => {
     fetchMovieData();
+    fetchUserData();
   }, []);
 
   const [isDesktop, setDesktop] = useState(window.innerWidth > 800);
@@ -72,6 +80,19 @@ const BookTickets = () => {
       (gold_seat_count - 1) * movieData.goldSeatCost +
       (plat_seat_count - 1) * movieData.platinumSeatCost;
     setTotalCost(total_cost);
+  };
+
+  const storeData = () => {
+    var mov_name = movieData.movieName;
+    var user_name = userData.userName;
+    var ticketData = {
+      user_name,
+      mov_name,
+      seatSelected,
+      totalCost,
+    };
+    sessionStorage.setItem("ticketData", JSON.stringify(ticketData));
+    //JSON.parse(sessionStorage.getItem("ticketData"));
   };
 
   const updateMedia = () => {
@@ -313,7 +334,12 @@ const BookTickets = () => {
                       {totalCost}.00 {"\u20B9"}
                     </p>
                     <br />
-                    <button style={{ float: "none" }}>BOOK TICKET</button>
+                    <button
+                      style={{ float: "none" }}
+                      onClick={() => storeData()}
+                    >
+                      BOOK TICKET
+                    </button>
                   </>
                 )}
               </div>
